@@ -16,3 +16,5 @@
 - 간단한 투두 리스트의 프론트엔드 단입니다. 
 
 ## 🎬 시연 영상
+
+<img src='./readme_img/todoList.gif'/>
