@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components"
 import { useTodoState } from "../TodoContext";
+import TxtTaskGuide from "./TxtTaskGuide";
+import { MdAddCircleOutline } from "react-icons/md";
+
 
 const TodoHeadBlock = styled.div`
     padding-top : 48px;
@@ -28,7 +31,22 @@ const TodoHeadBlock = styled.div`
 
 const TodoHead = () => {
     const todos = useTodoState();
-    const undoneTasks = todos.filter(todo => !todo.done);
+    const notDone = todos.filter(todo => !todo.done).length;
+    const todosLen = todos.length;
+
+    const zeroTodo_msg = (
+      <div>
+        <span>하단의</span>
+        <MdAddCircleOutline className='addIcon' />
+        <span>하단의 버튼을 눌러 할일을 추가해보세요!</span>
+      </div>
+    ),
+    message = () => {
+      if(notDone <= 0) {
+        if(todosLen > 0) return '모든 할일을 마치셨어요!';
+        else return zeroTodo_msg;
+      } else return notDone + '개의 할일이 남았어요!'
+    }
     const today = new Date();
     const dateString = today.toLocaleDateString('ko-KR',{
         year : 'numeric',
@@ -40,7 +58,7 @@ const TodoHead = () => {
         <TodoHeadBlock>
             <h1>{dateString}</h1>
             <div className="day">{dayName}</div>
-            <div className="tasks-left">할 일 {undoneTasks.length}개 남음</div>
+            <TxtTaskGuide message={message()} />
         </TodoHeadBlock>
     )
 }

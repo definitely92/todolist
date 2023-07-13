@@ -1,28 +1,7 @@
 import React, {createContext, useReducer, useContext, useRef} from "react"
 
 const initialTodos = [
-    {
-        id : 1,
-        text : '할 일 1',
-        done : true
-    },
-
-    {
-        id : 2,
-        text : '할 일 2',
-        done : true
-    },
-
-    {
-        id : 3,
-        text : '할 일 3',
-        done : false
-    },
-    {
-        id : 4,
-        text : '할 일 4',
-        done : false
-    },
+    
 ]
 
 function todoReducer (state, action) {
